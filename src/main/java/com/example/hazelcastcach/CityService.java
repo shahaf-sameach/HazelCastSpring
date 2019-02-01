@@ -1,6 +1,7 @@
 package com.example.hazelcastcach;
 
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.IMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,7 @@ public class CityService {
     }
 
     public String getCity(){
-        String city = hazelcastInstance.getMap("city").get("city").toString();
-        return city;
+        return hazelcastInstance.getMap("city").getOrDefault("city", "NA").toString();
     }
 
     public String setCity(String city) {
