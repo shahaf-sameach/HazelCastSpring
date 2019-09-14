@@ -2,22 +2,21 @@ package com.example.hazelcastcach;
 
 import com.hazelcast.core.HazelcastInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import java.util.concurrent.TimeUnit;
 
-@Service
+@Repository
 public class DbService {
 
     @Autowired
     public HazelcastInstance hazelcastInstance;
 
     public String getEntry(String key){
-        return hazelcastInstance.getMap("db").getOrDefault(key, "NA").toString();
+        return hazelcastInstance.getMap("db").getOrDefault(key, "Na").toString();
     }
 
-    public void SetCity(String key, String value) {
+    public void setEntry(String key, String value) {
         hazelcastInstance.getMap("db").put(key, value);
     }
+
 }
