@@ -22,6 +22,9 @@ public class DbController {
     @PostMapping
     public Mono<ResponseEntity> setEntry(@RequestBody DbEntry entry) {
         return Mono.fromCallable(() -> {
+            if (entry.isInvalid())
+                return ResponseEntity.badRequest().build();
+
             dbService.setEntry(entry.getKey(), entry.getValue());
             return ResponseEntity.ok().build();
         });

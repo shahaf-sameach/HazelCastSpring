@@ -1,4 +1,4 @@
-FROM java:openjdk-8-jre
+FROM java:openjdk-11-jre
 
 ENV SLEEP=0
 

@@ -26,6 +26,7 @@ public class SlowController {
     public Mono<String> getSlowResponse() {
         return Mono.fromCallable(() -> {
             long start1 = nanoTime();
+            var i = 10;
             String response = slowService.slowFunction();
             long end1 = nanoTime();
             log.info("call took {} millis with result: {}", TimeUnit.NANOSECONDS.toMillis(end1 - start1), response);
