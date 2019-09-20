@@ -25,7 +25,7 @@ public class HazelcastResponseHeaderWebFilter implements WebFilter {
 
         exchange.getResponse()
                 .getHeaders()
-                .add("Instance-Id", value);
+                .add("X-Instance-Id", value);
         return chain.filter(exchange);
     }
 }
