@@ -25,11 +25,9 @@ public class SlowController {
     @GetMapping("/slow")
     public Mono<String> getSlowResponse() {
         return Mono.fromCallable(() -> {
-            long start1 = nanoTime();
-            var i = 10;
+            var start1 = nanoTime();
             String response = slowService.slowFunction();
-            long end1 = nanoTime();
-            log.info("call took {} millis with result: {}", TimeUnit.NANOSECONDS.toMillis(end1 - start1), response);
+            var end1 = nanoTime();
             return response + " took " + TimeUnit.NANOSECONDS.toMillis(end1 - start1);
         });
     }
